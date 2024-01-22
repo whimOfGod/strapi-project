@@ -30,9 +30,6 @@
         "audios"
       ]
     },
-    "PublishedAt": {
-      "type": "date"
-    },
     "categories": {
       "type": "relation",
       "relation": "manyToMany",

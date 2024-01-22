@@ -7,9 +7,11 @@ ARG NODE_ENV=development
 ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /opt/
+RUN npm install esbuild@0.19.11
+
+
 COPY package.json package-lock.json ./
 RUN npm install -g node-gyp
-RUN npm install -g esbuild-wasm
 RUN npm config set fetch-retry-maxtimeout 600000 -g
 RUN npm cache clean --force
 RUN npm ci
@@ -19,5 +21,6 @@ COPY . .
 RUN chown -R node:node /opt/app
 USER node
 
+RUN npm install esbuild
 EXPOSE 1337
 CMD ["npm", "run", "develop"]
